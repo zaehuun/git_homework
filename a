@@ -1,0 +1,22 @@
+int main(int argc, char* argv[]){
+
+        int sockfd;
+        struct sockaddr_in my_addr;
+
+        sockfd = socket(PF_INET,SOCK_STREAM,0);
+
+        my_addr.sin_fammily = PF_INET;
+        my_addr.sin_port = htons(23456);
+        my_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+        memset(&(my_addr.sin_zero),0,8);
+
+        if(bind(sockfd, (struct sockaddr *)&my_addr, sizeof(struct sockaddr_in)) == -1){
+                perror("Bind");
+                return 0;
+        }
+        else
+                print(1);
+
+        close(sockfd);
+        return 0;
+}
